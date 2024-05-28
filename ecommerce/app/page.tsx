@@ -15,8 +15,8 @@ function Home() {
       setBannerData(bannerData);
       setProducts(products);
 
-      console.log(bannerData);
-      console.log(products);
+      //console.log(bannerData);
+      //console.log(products);
     }
     fetchData();
   }, []);
@@ -30,7 +30,7 @@ function Home() {
       </div>
 
       <div className="products-container">
-        {products?.map((product) => <Product key={product._id} product={product} />)}
+        {products?.map((product, index) => <Product key={index} product={product} />)}
       </div>
       <FooterBanner footerBanner={bannerData && bannerData[0]} />
   </>
