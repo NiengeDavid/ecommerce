@@ -1,9 +1,8 @@
 "use client"
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Product, FooterBanner, HeroBanner } from "../components";
 import { getAllData } from './utils';
-import { useEffect, useState } from 'react';
 
 function Home() {
   const [bannerData, setBannerData] = useState([]);
