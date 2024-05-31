@@ -9,7 +9,7 @@ _type: string;
 asset: ImageAsset;
 }
 
-export interface Product {
+export interface Products {
 _createdAt: string;
 _id: string;
 _rev: string;
@@ -25,5 +25,5 @@ slug: {
 };
 }
   
-export type ProductsResponse = Product[];
+export type ProductsResponse = Products[];
   

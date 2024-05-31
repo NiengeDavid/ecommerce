@@ -456,6 +456,7 @@ padding: 30px 65px;
 .selected-image{
   background-color:#f02d34;
 }
+
 .reviews{
   color: #f02d34;
   margin-top: 10px;
@@ -467,6 +468,7 @@ padding: 30px 65px;
 .product-detail-desc h4{
   margin-top: 10px;
 }
+
 .product-detail-desc p{
   margin-top: 10px;
 }
@@ -529,7 +531,7 @@ padding: 30px 65px;
 }
 .quantity-desc{
   border: 1px solid gray;
-padding: 6px;
+  padding: 6px;
 }
 .quantity-desc span{
   font-size: 16px;
