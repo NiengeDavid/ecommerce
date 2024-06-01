@@ -29,8 +29,8 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
       setProductData(product);
       setProductsData(products);
 
-      console.log(product);
-      // console.log(products);
+      //console.log(product);
+      //console.log(products);
       // console.log(params.slug);
     }
 
@@ -55,6 +55,7 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
               <img
                 src={urlFor(productData.image[index]).url()}
                 alt={productData.name}
+                className="product-detail-image"
               />
             ) : (
               <div>No Image Available</div>
