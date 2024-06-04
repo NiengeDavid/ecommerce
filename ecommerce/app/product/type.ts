@@ -19,6 +19,7 @@ details: string;
 image: ProductImage[];
 name: string;
 price: number;
+quantity: number;
 slug: {
     _type: string;
     current: string;

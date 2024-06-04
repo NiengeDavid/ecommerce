@@ -12,6 +12,7 @@ import {
 import { getSortedProductsData } from "../../utils";
 import { urlFor } from "@/lib/client";
 import { Product } from '../../../components';
+import {useStateContext} from '../../../context/StateContext';
 
 interface PageProps {
   productss: Products;
@@ -22,6 +23,8 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
   const [productData, setProductData] = useState<Products | null>(null);
   const [productsData, setProductsData] = useState<ProductsResponse>([]);
   const [index, setIndex] = useState(0);
+
+  const { decQty, incQty, qty, onAdd } = useStateContext();
 
   useEffect(() => {
     async function fetchData() {
@@ -93,11 +96,11 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
           <div className="quantity flex">
             <h3 className="font-semibold text-lg">Quantity:</h3>
             <p className="quantity-desc flex items-center justify-center text-lg py-3 px-1.5">
-              <span className="minus border-r border-gray-500 text-lg py-3 px-1.5">
+              <span className="minus border-r border-gray-500 text-lg py-3 px-1.5" onClick={decQty}>
                 <AiOutlineMinus />
               </span>
-              <span className="num">0</span>
-              <span className="plus text-lg p-0 border-gray-500">
+              <span className="num">{qty}</span>
+              <span className="plus text-lg p-0 border-gray-500" onClick={incQty}>
                 <AiOutlinePlus />
               </span>
             </p>
@@ -106,12 +109,12 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
             <button 
               type="button"
               className="add-to-cart"
-              onClick=""
+              onClick={() => onAdd(productData, qty)}
             >Add to Cart</button>
             <button 
               type="button"
               className="buy-now"
-              onClick=""
+              // onClick={}
             >Buy Now</button>
           </div>
         </div>
