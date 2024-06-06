@@ -51,29 +51,47 @@ const Cart = () => {
                   <h5>{item.name}</h5>
                   <h4>{item.price}</h4>
                 </div>
-                <div className="flex bottom justify-around space-x-2">
-                  <div>
-                    <p className="quantity-desc flex items-center justify-center mx-auto text-lg py-3 px-1.5">
-                      <span className="minus border-r border-gray-500 text-lg py-3 px-1.5" /*onClick={decQty}*/ >
-                        <AiOutlineMinus />
-                      </span>
-                      <span className="num">0</span>
-                      <span className="plus text-lg p-0 border-gray-500" /*onClick={incQty}*/ >
-                        <AiOutlinePlus />
-                      </span>
-                    </p>
-                  </div>
+                <div className="flex bottom justify-around items-center space-x-8">
+                  
+                  <p className="flex border text-start border-gray-500 p-2 w-10 items-center">
+                    <span className="text-red-500 cursor-pointer border-r border-gray-500 px-3 text-lg" /*onClick={decQty}*/ >
+                      <AiOutlineMinus />
+                    </span>
+                    <span className="border-r border-gray-500 pr-3 text-sm font-semibold">0</span>
+                    <span className="text-green-500 cursor-pointer pr-3 text-lg" /*onClick={incQty}*/ >
+                      <AiOutlinePlus />
+                    </span>
+                  </p>
+                
                   <button 
-                    className="remove-item"
+                    className="remove-item relative"
                     type='button'
                     /*onClick='*/
                   >
                     <TiDeleteOutline />
                   </button>
+                  
                 </div>
               </div>
             </div>
           ))}
+
+          {cartItems.length >= 1 && (
+            <div className="cart-botton">
+              <div className="total mx-3">
+                <h3>Subtotal:</h3>
+                <h3>${totalPrice}</h3>
+              </div>
+              <div className="btn-container">
+                <button 
+                  type='button'
+                  className="btn"
+                >
+                  Pay with Stripe
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
