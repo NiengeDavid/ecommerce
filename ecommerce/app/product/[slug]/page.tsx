@@ -11,8 +11,9 @@ import {
 
 import { getSortedProductsData } from "../../utils";
 import { urlFor } from "@/lib/client";
-import { Product } from '../../../components';
-import {useStateContext} from '../../../context/StateContext';
+import { Product } from "../../../components";
+import { useStateContext } from "../../../context/StateContext";
+import { on } from "events";
 
 interface PageProps {
   productss: Products;
@@ -24,7 +25,7 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
   const [productsData, setProductsData] = useState<ProductsResponse>([]);
   const [index, setIndex] = useState(0);
 
-  const { decQty, incQty, qty, onAdd } = useStateContext();
+  const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
 
   useEffect(() => {
     async function fetchData() {
@@ -48,6 +49,12 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
     return <div>Loading...</div>;
   }
 
+  const handleBuyNow = () => {
+    onAdd(productData, qty);
+
+    setShowCart(true);
+  }
+
   return (
     <div>
       <div className="product-detail-container">
@@ -64,14 +71,16 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
               <div>No Image Available</div>
             )}
           </div>
-            {/* Small Images */}
+          {/* Small Images */}
           <div className="small-images-container">
             {productData.image?.map((item, i) => (
               <img
-                key={item._key} 
+                key={item._key}
                 src={urlFor(item).url()}
                 alt={`Product image ${i + 1}`}
-                className={i === index ? 'small-image selected-image' : 'small-image'}
+                className={
+                  i === index ? "small-image selected-image" : "small-image"
+                }
                 onMouseEnter={() => setIndex(i)}
               />
             ))}
@@ -96,26 +105,32 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
           <div className="quantity flex">
             <h3 className="font-semibold text-lg">Quantity:</h3>
             <p className="quantity-desc flex items-center justify-center text-lg py-3 px-1.5">
-              <span className="minus border-r border-gray-500 text-lg py-3 px-1.5" onClick={decQty}>
+              <span
+                className="minus border-r border-gray-500 text-lg py-3 px-1.5"
+                onClick={decQty}
+              >
                 <AiOutlineMinus />
               </span>
               <span className="num">{qty}</span>
-              <span className="plus text-lg p-0 border-gray-500" onClick={incQty}>
+              <span
+                className="plus text-lg p-0 border-gray-500"
+                onClick={incQty}
+              >
                 <AiOutlinePlus />
               </span>
             </p>
           </div>
           <div className="buttons">
-            <button 
+            <button
               type="button"
               className="add-to-cart"
               onClick={() => onAdd(productData, qty)}
-            >Add to Cart</button>
-            <button 
-              type="button"
-              className="buy-now"
-              // onClick={}
-            >Buy Now</button>
+            >
+              Add to Cart
+            </button>
+            <button type="button" className="buy-now" onClick={handleBuyNow}>
+              Buy Now
+            </button>
           </div>
         </div>
       </div>
