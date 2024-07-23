@@ -66,7 +66,7 @@ export async function POST(
           }
         }),
         success_url: `${req.headers.get("origin")}/success`,
-        cancel_url: `${req.headers.get("origin")}/canceled`,
+        cancel_url: `${req.headers.get("origin")}/?canceled=true`,
       };
 
       //creat checkout sessions from body params
