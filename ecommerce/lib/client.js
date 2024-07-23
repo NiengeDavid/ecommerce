@@ -8,7 +8,7 @@ export const client = createClient({
   dataset: "production",
   apiVersion: "2024-04-16",
   useCdn: true,
-  token: process.env.REACT_APP_SANITY_TOKEN,
+  token: process.env.NEXT_APP_SANITY_TOKEN,
   ignoreBrowserTokenWarning: true
 });
 
