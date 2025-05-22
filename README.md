@@ -1,2 +1,2 @@
 # ecommerce
-My first Next.js application
+Nextjs Ecommerce store with Sanity and Stripe
